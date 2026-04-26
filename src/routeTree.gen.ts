@@ -101,9 +101,9 @@ const UserAwarenessRoute = UserAwarenessRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DriverProfileRoute = DriverProfileRouteImport.update({
-  id: '/profile',
-  path: '/profile',
-  getParentRoute: () => DriverRouteRoute,
+  id: '/driver/profile',
+  path: '/driver/profile',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const DriverNavigateRoute = DriverNavigateRouteImport.update({
   id: '/driver/navigate',
@@ -111,9 +111,9 @@ const DriverNavigateRoute = DriverNavigateRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const DriverHistoryRoute = DriverHistoryRouteImport.update({
-  id: '/history',
-  path: '/history',
-  getParentRoute: () => DriverRouteRoute,
+  id: '/driver/history',
+  path: '/driver/history',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminReportsRoute = AdminReportsRouteImport.update({
   id: '/admin/reports',
@@ -273,7 +273,9 @@ export interface RootRouteChildren {
   AdminDriversRoute: typeof AdminDriversRoute
   AdminProfileRoute: typeof AdminProfileRoute
   AdminReportsRoute: typeof AdminReportsRoute
+  DriverHistoryRoute: typeof DriverHistoryRoute
   DriverNavigateRoute: typeof DriverNavigateRoute
+  DriverProfileRoute: typeof DriverProfileRoute
   UserAwarenessRoute: typeof UserAwarenessRoute
   UserEmergencyRoute: typeof UserEmergencyRoute
   UserNotificationsRoute: typeof UserNotificationsRoute
@@ -390,10 +392,10 @@ declare module '@tanstack/react-router' {
     }
     '/driver/profile': {
       id: '/driver/profile'
-      path: '/profile'
+      path: '/driver/profile'
       fullPath: '/driver/profile'
       preLoaderRoute: typeof DriverProfileRouteImport
-      parentRoute: typeof DriverRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/driver/navigate': {
       id: '/driver/navigate'
@@ -404,10 +406,10 @@ declare module '@tanstack/react-router' {
     }
     '/driver/history': {
       id: '/driver/history'
-      path: '/history'
+      path: '/driver/history'
       fullPath: '/driver/history'
       preLoaderRoute: typeof DriverHistoryRouteImport
-      parentRoute: typeof DriverRouteRoute
+      parentRoute: typeof rootRouteImport
     }
     '/admin/reports': {
       id: '/admin/reports'
@@ -439,7 +441,9 @@ const rootRouteChildren: RootRouteChildren = {
   AdminDriversRoute: AdminDriversRoute,
   AdminProfileRoute: AdminProfileRoute,
   AdminReportsRoute: AdminReportsRoute,
+  DriverHistoryRoute: DriverHistoryRoute,
   DriverNavigateRoute: DriverNavigateRoute,
+  DriverProfileRoute: DriverProfileRoute,
   UserAwarenessRoute: UserAwarenessRoute,
   UserEmergencyRoute: UserEmergencyRoute,
   UserNotificationsRoute: UserNotificationsRoute,
