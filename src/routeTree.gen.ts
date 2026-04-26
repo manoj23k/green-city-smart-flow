@@ -10,15 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as DriverRouteRouteImport } from './routes/driver/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UserIndexRouteImport } from './routes/user/index'
+import { Route as DriverIndexRouteImport } from './routes/driver/index'
 import { Route as UserTrackRouteImport } from './routes/user/track'
 import { Route as UserScheduleRouteImport } from './routes/user/schedule'
+import { Route as UserRewardsRouteImport } from './routes/user/rewards'
+import { Route as UserReportMonthlyRouteImport } from './routes/user/report-monthly'
 import { Route as UserReportRouteImport } from './routes/user/report'
+import { Route as UserProfileRouteImport } from './routes/user/profile'
+import { Route as UserNotificationsRouteImport } from './routes/user/notifications'
+import { Route as UserEmergencyRouteImport } from './routes/user/emergency'
+import { Route as UserAwarenessRouteImport } from './routes/user/awareness'
+import { Route as DriverProfileRouteImport } from './routes/driver/profile'
+import { Route as DriverHistoryRouteImport } from './routes/driver/history'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DriverRouteRoute = DriverRouteRouteImport.update({
+  id: '/driver',
+  path: '/driver',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,6 +46,11 @@ const UserIndexRoute = UserIndexRouteImport.update({
   path: '/user/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DriverIndexRoute = DriverIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => DriverRouteRoute,
+} as any)
 const UserTrackRoute = UserTrackRouteImport.update({
   id: '/user/track',
   path: '/user/track',
@@ -41,68 +61,173 @@ const UserScheduleRoute = UserScheduleRouteImport.update({
   path: '/user/schedule',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserRewardsRoute = UserRewardsRouteImport.update({
+  id: '/user/rewards',
+  path: '/user/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserReportMonthlyRoute = UserReportMonthlyRouteImport.update({
+  id: '/user/report-monthly',
+  path: '/user/report-monthly',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UserReportRoute = UserReportRouteImport.update({
   id: '/user/report',
   path: '/user/report',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserProfileRoute = UserProfileRouteImport.update({
+  id: '/user/profile',
+  path: '/user/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserNotificationsRoute = UserNotificationsRouteImport.update({
+  id: '/user/notifications',
+  path: '/user/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserEmergencyRoute = UserEmergencyRouteImport.update({
+  id: '/user/emergency',
+  path: '/user/emergency',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserAwarenessRoute = UserAwarenessRouteImport.update({
+  id: '/user/awareness',
+  path: '/user/awareness',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DriverProfileRoute = DriverProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => DriverRouteRoute,
+} as any)
+const DriverHistoryRoute = DriverHistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => DriverRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/driver': typeof DriverRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/driver/history': typeof DriverHistoryRoute
+  '/driver/profile': typeof DriverProfileRoute
+  '/user/awareness': typeof UserAwarenessRoute
+  '/user/emergency': typeof UserEmergencyRoute
+  '/user/notifications': typeof UserNotificationsRoute
+  '/user/profile': typeof UserProfileRoute
   '/user/report': typeof UserReportRoute
+  '/user/report-monthly': typeof UserReportMonthlyRoute
+  '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/driver/': typeof DriverIndexRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/driver/history': typeof DriverHistoryRoute
+  '/driver/profile': typeof DriverProfileRoute
+  '/user/awareness': typeof UserAwarenessRoute
+  '/user/emergency': typeof UserEmergencyRoute
+  '/user/notifications': typeof UserNotificationsRoute
+  '/user/profile': typeof UserProfileRoute
   '/user/report': typeof UserReportRoute
+  '/user/report-monthly': typeof UserReportMonthlyRoute
+  '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/driver': typeof DriverIndexRoute
   '/user': typeof UserIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/driver': typeof DriverRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/driver/history': typeof DriverHistoryRoute
+  '/driver/profile': typeof DriverProfileRoute
+  '/user/awareness': typeof UserAwarenessRoute
+  '/user/emergency': typeof UserEmergencyRoute
+  '/user/notifications': typeof UserNotificationsRoute
+  '/user/profile': typeof UserProfileRoute
   '/user/report': typeof UserReportRoute
+  '/user/report-monthly': typeof UserReportMonthlyRoute
+  '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/driver/': typeof DriverIndexRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/driver'
     | '/login'
+    | '/driver/history'
+    | '/driver/profile'
+    | '/user/awareness'
+    | '/user/emergency'
+    | '/user/notifications'
+    | '/user/profile'
     | '/user/report'
+    | '/user/report-monthly'
+    | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/driver/'
     | '/user/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
+    | '/driver/history'
+    | '/driver/profile'
+    | '/user/awareness'
+    | '/user/emergency'
+    | '/user/notifications'
+    | '/user/profile'
     | '/user/report'
+    | '/user/report-monthly'
+    | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/driver'
     | '/user'
   id:
     | '__root__'
     | '/'
+    | '/driver'
     | '/login'
+    | '/driver/history'
+    | '/driver/profile'
+    | '/user/awareness'
+    | '/user/emergency'
+    | '/user/notifications'
+    | '/user/profile'
     | '/user/report'
+    | '/user/report-monthly'
+    | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/driver/'
     | '/user/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DriverRouteRoute: typeof DriverRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
+  UserAwarenessRoute: typeof UserAwarenessRoute
+  UserEmergencyRoute: typeof UserEmergencyRoute
+  UserNotificationsRoute: typeof UserNotificationsRoute
+  UserProfileRoute: typeof UserProfileRoute
   UserReportRoute: typeof UserReportRoute
+  UserReportMonthlyRoute: typeof UserReportMonthlyRoute
+  UserRewardsRoute: typeof UserRewardsRoute
   UserScheduleRoute: typeof UserScheduleRoute
   UserTrackRoute: typeof UserTrackRoute
   UserIndexRoute: typeof UserIndexRoute
@@ -115,6 +240,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driver': {
+      id: '/driver'
+      path: '/driver'
+      fullPath: '/driver'
+      preLoaderRoute: typeof DriverRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -131,6 +263,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/driver/': {
+      id: '/driver/'
+      path: '/'
+      fullPath: '/driver/'
+      preLoaderRoute: typeof DriverIndexRouteImport
+      parentRoute: typeof DriverRouteRoute
+    }
     '/user/track': {
       id: '/user/track'
       path: '/user/track'
@@ -145,6 +284,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserScheduleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/rewards': {
+      id: '/user/rewards'
+      path: '/user/rewards'
+      fullPath: '/user/rewards'
+      preLoaderRoute: typeof UserRewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/report-monthly': {
+      id: '/user/report-monthly'
+      path: '/user/report-monthly'
+      fullPath: '/user/report-monthly'
+      preLoaderRoute: typeof UserReportMonthlyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/user/report': {
       id: '/user/report'
       path: '/user/report'
@@ -152,13 +305,78 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserReportRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/profile': {
+      id: '/user/profile'
+      path: '/user/profile'
+      fullPath: '/user/profile'
+      preLoaderRoute: typeof UserProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/notifications': {
+      id: '/user/notifications'
+      path: '/user/notifications'
+      fullPath: '/user/notifications'
+      preLoaderRoute: typeof UserNotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/emergency': {
+      id: '/user/emergency'
+      path: '/user/emergency'
+      fullPath: '/user/emergency'
+      preLoaderRoute: typeof UserEmergencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/awareness': {
+      id: '/user/awareness'
+      path: '/user/awareness'
+      fullPath: '/user/awareness'
+      preLoaderRoute: typeof UserAwarenessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/driver/profile': {
+      id: '/driver/profile'
+      path: '/profile'
+      fullPath: '/driver/profile'
+      preLoaderRoute: typeof DriverProfileRouteImport
+      parentRoute: typeof DriverRouteRoute
+    }
+    '/driver/history': {
+      id: '/driver/history'
+      path: '/history'
+      fullPath: '/driver/history'
+      preLoaderRoute: typeof DriverHistoryRouteImport
+      parentRoute: typeof DriverRouteRoute
+    }
   }
 }
 
+interface DriverRouteRouteChildren {
+  DriverHistoryRoute: typeof DriverHistoryRoute
+  DriverProfileRoute: typeof DriverProfileRoute
+  DriverIndexRoute: typeof DriverIndexRoute
+}
+
+const DriverRouteRouteChildren: DriverRouteRouteChildren = {
+  DriverHistoryRoute: DriverHistoryRoute,
+  DriverProfileRoute: DriverProfileRoute,
+  DriverIndexRoute: DriverIndexRoute,
+}
+
+const DriverRouteRouteWithChildren = DriverRouteRoute._addFileChildren(
+  DriverRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DriverRouteRoute: DriverRouteRouteWithChildren,
   LoginRoute: LoginRoute,
+  UserAwarenessRoute: UserAwarenessRoute,
+  UserEmergencyRoute: UserEmergencyRoute,
+  UserNotificationsRoute: UserNotificationsRoute,
+  UserProfileRoute: UserProfileRoute,
   UserReportRoute: UserReportRoute,
+  UserReportMonthlyRoute: UserReportMonthlyRoute,
+  UserRewardsRoute: UserRewardsRoute,
   UserScheduleRoute: UserScheduleRoute,
   UserTrackRoute: UserTrackRoute,
   UserIndexRoute: UserIndexRoute,
