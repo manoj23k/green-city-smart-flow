@@ -11,7 +11,7 @@ const NAV: Record<Role, { to: string; label: string; icon: React.ElementType }[]
   ],
   driver: [
     { to: "/driver", label: "Tasks", icon: ListChecks },
-    { to: "/driver/route", label: "Route", icon: Map },
+    { to: "/driver/navigate", label: "Route", icon: Map },
     { to: "/driver/history", label: "History", icon: Truck },
     { to: "/driver/profile", label: "Profile", icon: User },
   ],

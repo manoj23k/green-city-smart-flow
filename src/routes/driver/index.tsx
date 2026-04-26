@@ -65,7 +65,7 @@ function DriverHome() {
           <section className="px-5 mt-6">
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold">Today's Tasks</h3>
-              <Link to="/driver/route" className="text-xs font-semibold text-primary">View route →</Link>
+              <Link to="/driver/navigate" className="text-xs font-semibold text-primary">View route →</Link>
             </div>
             <div className="space-y-3">
               {tasks.map((t) => (

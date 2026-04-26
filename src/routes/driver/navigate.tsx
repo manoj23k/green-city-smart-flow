@@ -3,7 +3,7 @@ import { Navigation, MapPin, Truck, Route as RouteIcon } from "lucide-react";
 import { RoleGate } from "@/components/app/RoleGate";
 import { TopBar } from "@/components/app/TopBar";
 
-export const Route = createFileRoute("/driver")({
+export const Route = createFileRoute("/driver/navigate")({
   head: () => ({ meta: [{ title: "Route — Smart Waste Management" }] }),
   component: RoutePage,
 });
