@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UserIndexRouteImport } from './routes/user/index'
+import { Route as UserTrackRouteImport } from './routes/user/track'
+import { Route as UserScheduleRouteImport } from './routes/user/schedule'
 import { Route as UserReportRouteImport } from './routes/user/report'
 
 const LoginRoute = LoginRouteImport.update({
@@ -29,6 +31,16 @@ const UserIndexRoute = UserIndexRouteImport.update({
   path: '/user/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const UserTrackRoute = UserTrackRouteImport.update({
+  id: '/user/track',
+  path: '/user/track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UserScheduleRoute = UserScheduleRouteImport.update({
+  id: '/user/schedule',
+  path: '/user/schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const UserReportRoute = UserReportRouteImport.update({
   id: '/user/report',
   path: '/user/report',
@@ -39,12 +51,16 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/user/report': typeof UserReportRoute
+  '/user/schedule': typeof UserScheduleRoute
+  '/user/track': typeof UserTrackRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/user/report': typeof UserReportRoute
+  '/user/schedule': typeof UserScheduleRoute
+  '/user/track': typeof UserTrackRoute
   '/user': typeof UserIndexRoute
 }
 export interface FileRoutesById {
@@ -52,20 +68,43 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/user/report': typeof UserReportRoute
+  '/user/schedule': typeof UserScheduleRoute
+  '/user/track': typeof UserTrackRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/user/report' | '/user/'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/user/report'
+    | '/user/schedule'
+    | '/user/track'
+    | '/user/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/user/report' | '/user'
-  id: '__root__' | '/' | '/login' | '/user/report' | '/user/'
+  to:
+    | '/'
+    | '/login'
+    | '/user/report'
+    | '/user/schedule'
+    | '/user/track'
+    | '/user'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/user/report'
+    | '/user/schedule'
+    | '/user/track'
+    | '/user/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
   UserReportRoute: typeof UserReportRoute
+  UserScheduleRoute: typeof UserScheduleRoute
+  UserTrackRoute: typeof UserTrackRoute
   UserIndexRoute: typeof UserIndexRoute
 }
 
@@ -92,6 +131,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UserIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/user/track': {
+      id: '/user/track'
+      path: '/user/track'
+      fullPath: '/user/track'
+      preLoaderRoute: typeof UserTrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/user/schedule': {
+      id: '/user/schedule'
+      path: '/user/schedule'
+      fullPath: '/user/schedule'
+      preLoaderRoute: typeof UserScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/user/report': {
       id: '/user/report'
       path: '/user/report'
@@ -106,6 +159,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
   UserReportRoute: UserReportRoute,
+  UserScheduleRoute: UserScheduleRoute,
+  UserTrackRoute: UserTrackRoute,
   UserIndexRoute: UserIndexRoute,
 }
 export const routeTree = rootRouteImport
