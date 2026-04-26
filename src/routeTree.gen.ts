@@ -14,6 +14,7 @@ import { Route as DriverRouteRouteImport } from './routes/driver/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as UserIndexRouteImport } from './routes/user/index'
 import { Route as DriverIndexRouteImport } from './routes/driver/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as UserTrackRouteImport } from './routes/user/track'
 import { Route as UserScheduleRouteImport } from './routes/user/schedule'
 import { Route as UserRewardsRouteImport } from './routes/user/rewards'
@@ -25,6 +26,9 @@ import { Route as UserEmergencyRouteImport } from './routes/user/emergency'
 import { Route as UserAwarenessRouteImport } from './routes/user/awareness'
 import { Route as DriverProfileRouteImport } from './routes/driver/profile'
 import { Route as DriverHistoryRouteImport } from './routes/driver/history'
+import { Route as AdminReportsRouteImport } from './routes/admin/reports'
+import { Route as AdminProfileRouteImport } from './routes/admin/profile'
+import { Route as AdminDriversRouteImport } from './routes/admin/drivers'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -50,6 +54,11 @@ const DriverIndexRoute = DriverIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => DriverRouteRoute,
+} as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const UserTrackRoute = UserTrackRouteImport.update({
   id: '/user/track',
@@ -106,11 +115,29 @@ const DriverHistoryRoute = DriverHistoryRouteImport.update({
   path: '/history',
   getParentRoute: () => DriverRouteRoute,
 } as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/admin/reports',
+  path: '/admin/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/admin/profile',
+  path: '/admin/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDriversRoute = AdminDriversRouteImport.update({
+  id: '/admin/drivers',
+  path: '/admin/drivers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/driver': typeof DriverRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/driver/history': typeof DriverHistoryRoute
   '/driver/profile': typeof DriverProfileRoute
   '/user/awareness': typeof UserAwarenessRoute
@@ -122,12 +149,16 @@ export interface FileRoutesByFullPath {
   '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/admin/': typeof AdminIndexRoute
   '/driver/': typeof DriverIndexRoute
   '/user/': typeof UserIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/driver/history': typeof DriverHistoryRoute
   '/driver/profile': typeof DriverProfileRoute
   '/user/awareness': typeof UserAwarenessRoute
@@ -139,6 +170,7 @@ export interface FileRoutesByTo {
   '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/admin': typeof AdminIndexRoute
   '/driver': typeof DriverIndexRoute
   '/user': typeof UserIndexRoute
 }
@@ -147,6 +179,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/driver': typeof DriverRouteRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/drivers': typeof AdminDriversRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/driver/history': typeof DriverHistoryRoute
   '/driver/profile': typeof DriverProfileRoute
   '/user/awareness': typeof UserAwarenessRoute
@@ -158,6 +193,7 @@ export interface FileRoutesById {
   '/user/rewards': typeof UserRewardsRoute
   '/user/schedule': typeof UserScheduleRoute
   '/user/track': typeof UserTrackRoute
+  '/admin/': typeof AdminIndexRoute
   '/driver/': typeof DriverIndexRoute
   '/user/': typeof UserIndexRoute
 }
@@ -167,6 +203,9 @@ export interface FileRouteTypes {
     | '/'
     | '/driver'
     | '/login'
+    | '/admin/drivers'
+    | '/admin/profile'
+    | '/admin/reports'
     | '/driver/history'
     | '/driver/profile'
     | '/user/awareness'
@@ -178,12 +217,16 @@ export interface FileRouteTypes {
     | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/admin/'
     | '/driver/'
     | '/user/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/login'
+    | '/admin/drivers'
+    | '/admin/profile'
+    | '/admin/reports'
     | '/driver/history'
     | '/driver/profile'
     | '/user/awareness'
@@ -195,6 +238,7 @@ export interface FileRouteTypes {
     | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/admin'
     | '/driver'
     | '/user'
   id:
@@ -202,6 +246,9 @@ export interface FileRouteTypes {
     | '/'
     | '/driver'
     | '/login'
+    | '/admin/drivers'
+    | '/admin/profile'
+    | '/admin/reports'
     | '/driver/history'
     | '/driver/profile'
     | '/user/awareness'
@@ -213,6 +260,7 @@ export interface FileRouteTypes {
     | '/user/rewards'
     | '/user/schedule'
     | '/user/track'
+    | '/admin/'
     | '/driver/'
     | '/user/'
   fileRoutesById: FileRoutesById
@@ -221,6 +269,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DriverRouteRoute: typeof DriverRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
+  AdminDriversRoute: typeof AdminDriversRoute
+  AdminProfileRoute: typeof AdminProfileRoute
+  AdminReportsRoute: typeof AdminReportsRoute
   UserAwarenessRoute: typeof UserAwarenessRoute
   UserEmergencyRoute: typeof UserEmergencyRoute
   UserNotificationsRoute: typeof UserNotificationsRoute
@@ -230,6 +281,7 @@ export interface RootRouteChildren {
   UserRewardsRoute: typeof UserRewardsRoute
   UserScheduleRoute: typeof UserScheduleRoute
   UserTrackRoute: typeof UserTrackRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   UserIndexRoute: typeof UserIndexRoute
 }
 
@@ -269,6 +321,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/driver/'
       preLoaderRoute: typeof DriverIndexRouteImport
       parentRoute: typeof DriverRouteRoute
+    }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/user/track': {
       id: '/user/track'
@@ -347,6 +406,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DriverHistoryRouteImport
       parentRoute: typeof DriverRouteRoute
     }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/admin/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/admin/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/drivers': {
+      id: '/admin/drivers'
+      path: '/admin/drivers'
+      fullPath: '/admin/drivers'
+      preLoaderRoute: typeof AdminDriversRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -370,6 +450,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DriverRouteRoute: DriverRouteRouteWithChildren,
   LoginRoute: LoginRoute,
+  AdminDriversRoute: AdminDriversRoute,
+  AdminProfileRoute: AdminProfileRoute,
+  AdminReportsRoute: AdminReportsRoute,
   UserAwarenessRoute: UserAwarenessRoute,
   UserEmergencyRoute: UserEmergencyRoute,
   UserNotificationsRoute: UserNotificationsRoute,
@@ -379,6 +462,7 @@ const rootRouteChildren: RootRouteChildren = {
   UserRewardsRoute: UserRewardsRoute,
   UserScheduleRoute: UserScheduleRoute,
   UserTrackRoute: UserTrackRoute,
+  AdminIndexRoute: AdminIndexRoute,
   UserIndexRoute: UserIndexRoute,
 }
 export const routeTree = rootRouteImport

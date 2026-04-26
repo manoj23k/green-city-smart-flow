@@ -29,11 +29,15 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Smart Waste Management — Clean City, Green Future" },
+      {
+        name: "description",
+        content:
+          "IoT-based smart city waste collection and segregation platform for citizens, pickup drivers and city administrators.",
+      },
+      { name: "theme-color", content: "#22c55e" },
+      { property: "og:title", content: "Smart Waste Management" },
+      { property: "og:description", content: "Clean City, Green Future ♻️" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
